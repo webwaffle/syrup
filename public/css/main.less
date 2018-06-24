@@ -1,0 +1,49 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto+Slab|Tajawal';
+
+* {
+    font-family: 'Tajawal', sans-serif;
+}
+
+.header-font {
+    font-family: 'Roboto Slab', sans-serif;
+}
+h1 {
+    .header-font;
+}
+.topbar {
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid black;
+}
+.centered-text {
+    text-align: center;
+}
+#login-form {
+    margin-top: 300px;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.chat {
+    border: 1px solid black;
+    border-radius: 8px;
+    margin: 5px;
+    width: 400px;
+    padding: 8px;
+    height: 110px;
+    .chat-id {
+        color: grey;
+        display: inline;
+    }
+    .chat-name {
+        display: inline;
+    }
+}
+.owned-chat {
+    border: 2px solid black !important;
+    .chat;
+}
+.joined-chat {
+    .chat;
+}

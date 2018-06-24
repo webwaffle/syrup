@@ -1,0 +1,25 @@
+<h1>Welcome {{username}}</h1>
+<a href="/logout">Logout</a>
+<form action="/create-chat-process" method="POST">
+    <h2>Create a chat</h2>
+    <input type="text" name="name" placeholder="Name">
+    <input type="submit" value="Create">
+</form>
+<form action="/join-chat-process" method="POST">
+    <h2>Join a chat</h2>
+    <input type="text" name="join_id" placeholder="Chat ID">
+    <input type="submit" value="Join">
+</form>
+<h3>My Chats</h3>
+{{#each ownedChats}}
+    <div class="owned-chat">
+        <p class="chat-id">#{{id}}</p>
+        <a href="/chat?id={{id}}"><h4 class="chat-name">{{name}}</h4></a>
+    </div>
+{{/each}}
+{{#each joinedChats}}
+    <div class="joined-chat">
+        <p class="chat-id">#{{id}}</p>
+        <h4 class="chat-name">{{name}}</h4>
+    </div>
+{{/each}}
