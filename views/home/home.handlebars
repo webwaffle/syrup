@@ -20,6 +20,6 @@
 {{#each joinedChats}}
     <div class="joined-chat">
         <p class="chat-id">#{{id}}</p>
-        <h4 class="chat-name">{{name}}</h4>
+        <a href="/chat?id={{id}}"><h4 class="chat-name">{{name}}</h4></a>
     </div>
 {{/each}}

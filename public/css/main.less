@@ -47,3 +47,24 @@ h1 {
 .joined-chat {
     .chat;
 }
+#messages {
+    border: 1px solid black;
+    border-radius: 8px;
+    width: 550px;
+    height: 700px;
+    .message {
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: 3px;
+        margin: 5px;
+        width: 100px;
+    }
+    .message-mine {
+        .message;
+        float: right;
+    }
+    .message-notmine {
+        .message;
+        float: left;
+    }
+}

@@ -82,7 +82,7 @@ app.get('/message-api', function(req, res) {
         }
     }
     for(var i = 0; i < chat.messages.length; i++) {
-        if (chat.messages[i].from.username == req.query.username) {
+        if (chat.messages[i].from.username == req.session.username && chat.messages[i].from.id == req.session.userid) {
             chat.messages[i].mine = true;
         } else {
             chat.messages[i].mine = false;

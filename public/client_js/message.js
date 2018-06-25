@@ -28,7 +28,8 @@ document.getElementById('message-send').addEventListener('click', function() {
 
 Vue.component('message', {
     props: ['message'],
-    template: '<div class="message"><p class="message-body">{{ message.message }}</p></div>'
+    template: '<div class="message-mine" v-if="message.mine"><p class="message-body">{{ message.message }}</p></div>' +
+    '<div class="message-notmine" v-else><p class="message-body">{{ message.message }}</p></div>'
 });
 
 var app = new Vue({
@@ -45,7 +46,7 @@ function getMessages() {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-            app.messages = JSON.parse(this.responseText);
+            app.messages = JSON.parse(this.responseText).reverse();
             console.log(this.responseText);
         }
     }
@@ -53,3 +54,6 @@ function getMessages() {
     req.send();
 }
 getMessages();
+setInterval(function() {
+    getMessages();
+}, 2000);
