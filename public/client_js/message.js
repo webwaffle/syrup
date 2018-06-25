@@ -27,8 +27,8 @@ document.getElementById('message-send').addEventListener('click', function() {
 });
 
 Vue.component('message', {
-    props: ['message', 'ismine'],
-    template: '<div class="message"><p class="message-body">{{ message }}</p></div>'
+    props: ['message'],
+    template: '<div class="message"><p class="message-body">{{ message.message }}</p></div>'
 });
 
 var app = new Vue({
@@ -41,13 +41,15 @@ var app = new Vue({
 });
 
 
-function getMessages(id) {
+function getMessages() {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
             app.messages = JSON.parse(this.responseText);
+            console.log(this.responseText);
         }
     }
-    req.open('GET', '/message-api?id=' + chatid + '&username=' + username, true);
+    req.open('GET', '/message-api?id=' + chatid + '&username=' + username + 'nocache=' + Date().toLocaleString(), true);
     req.send();
 }
+getMessages();

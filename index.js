@@ -75,7 +75,21 @@ app.get('/chat', function (req, res) {
 });
 
 app.get('/message-api', function(req, res) {
-    
+    var chatArray = fileToJson('data/chats.json');
+    for(var i = 0; i < chatArray.length; i++) {
+        if (chatArray[i].id == req.query.id) {
+            var chat = chatArray[i];
+        }
+    }
+    for(var i = 0; i < chat.messages.length; i++) {
+        if (chat.messages[i].from.username == req.query.username) {
+            chat.messages[i].mine = true;
+        } else {
+            chat.messages[i].mine = false;
+        }
+    }
+    res.type('application/json');
+    res.send(JSON.stringify(chat.messages));
 });
 
 app.post('/message-process', function(req, res) {
@@ -156,7 +170,8 @@ app.post('/create-chat-process', function(req, res) {
         creator: req.session.username,
         creator_id: req.session.userid,
         creation_datetime: moment().format('MM-DD-YYYY h:mm:ss a'),
-        members: []
+        members: [],
+        messages: []
     });
     fs.writeFileSync('data/chats.json', JSON.stringify(chatArray, undefined, 2));
     res.redirect(303, '/home');
