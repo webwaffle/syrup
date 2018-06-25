@@ -53,18 +53,25 @@ h1 {
     width: 550px;
     height: 700px;
     .message {
-        border: 1px solid black;
+        border: 1px solid #0a1128;
         border-radius: 4px;
         padding: 3px;
         margin: 5px;
         width: 100px;
     }
+    
     .message-mine {
         .message;
         float: right;
+        background-color: #0a1128;
+        color: white;
     }
     .message-notmine {
         .message;
         float: left;
     }
 }
+/*.message-wrap::after {
+    content: "\A";
+    white-space: pre;
+}*/

@@ -26,13 +26,13 @@ app.set('port', process.env.PORT || 3000);
 function fileToJson(path) {
     return JSON.parse(fs.readFileSync(path))
 }
-function setChatRoutes() {
+/*function setChatRoutes() {
     var chatArray = fileToJson('data/chats.json');
     console.log(chatArray);
     chatArray.forEach(function(c) {
         
     });
-}
+}*/
 
 
 app.get('/home', function(req, res) {
@@ -67,7 +67,8 @@ app.get('/chat', function (req, res) {
             args = {
                 name: c.name,
                 id: c.id,
-                username: req.session.username
+                username: req.session.username,
+                creator: c.creator
             };
         }
     });
@@ -93,8 +94,8 @@ app.get('/message-api', function(req, res) {
 });
 
 app.post('/message-process', function(req, res) {
-    console.log(req.body.message);
-    console.log(req.body.chatid);
+    //console.log(req.body.message);
+    //console.log(req.body.chatid);
     var chatArray = fileToJson('data/chats.json');
     for (var i = 0; i < chatArray.length; i++) {
         if (chatArray[i].id == req.body.chatid) {

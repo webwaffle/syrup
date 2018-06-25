@@ -1,12 +1,8 @@
 <script>var chatid = {{id}}; var username = "{{username}}"</script>
 <h1>{{name}}</h1>
+<h3 id="creator">{{creator}}</h3>
 <input type="text" id="message">
 <input type="submit" value="Send" id="message-send">
 <div id="messages">
-    <message
-        v-for="message in messages"
-        v-bind:message="message"
-        v-bind:key="message.sent"
-    ></message>
 </div>
 <script src="/client_js/message.js"></script>

@@ -26,28 +26,26 @@ document.getElementById('message-send').addEventListener('click', function() {
     sendData({message: messageToSend, chatid: chatid, from: username});
 });
 
-Vue.component('message', {
-    props: ['message'],
-    template: '<div class="message-mine" v-if="message.mine"><p class="message-body">{{ message.message }}</p></div>' +
-    '<div class="message-notmine" v-else><p class="message-body">{{ message.message }}</p></div>'
-});
-
-var app = new Vue({
-    el: '#messages',
-    data: {
-        messages: [
-            
-        ]
-    }
-});
-
 
 function getMessages() {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-            app.messages = JSON.parse(this.responseText).reverse();
-            console.log(this.responseText);
+            var messages = JSON.parse(this.responseText);
+            document.getElementById('messages').innerHTML = "";
+            for (var i = 0; i < messages.length; i++) {
+                if (messages[i].from.username) {
+                    userfrom = messages[i].from.username;
+                } else {
+                    userfrom = document.getElementById('creator').innerHTML;
+                }
+                if (messages[i].mine) {
+                    document.getElementById('messages').innerHTML += '<div class="message-mine"><p class="message-body">' + messages[i].message + '</p></div> <br><br><br>';
+                } else {
+                    document.getElementById('messages').innerHTML += '<div class="message-notmine"><p class="message-body">' + messages[i].message + '</p></div><br><p class="message-sender">from ' + userfrom  + '</p> <br><br><br>';
+                }
+            }
+            //console.log(this.responseText);
         }
     }
     req.open('GET', '/message-api?id=' + chatid + '&username=' + username + 'nocache=' + Date().toLocaleString(), true);
