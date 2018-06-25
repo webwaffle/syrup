@@ -8,13 +8,13 @@ function sendData(data) {
     }
     
     urlEncodedData = urlEncodedDataPairs.join('&').replace(/%20/g, '+');
-    //urlEncodedData = urlEncodedData + '&chatid=' + chatid;
-    /*XHR.addEventListener('load', function(event) {
+    /*urlEncodedData = urlEncodedData + '&chatid=' + chatid;
+    XHR.addEventListener('load', function(event) {
         alert('Response loaded');
-    });*/
+    });
     XHR.addEventListener('error', function(event) {
         alert('Oops! Something goes wrong.');
-    });
+    });*/
     XHR.open('POST', '/message-process');
 
     XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -37,7 +37,7 @@ function getMessages() {
                 if (messages[i].from.username) {
                     userfrom = messages[i].from.username;
                 } else {
-                    userfrom = document.getElementById('creator').innerHTML;
+                    userfrom = document.getElementById('creator').innerHTML.slice(11);
                 }
                 if (messages[i].mine) {
                     document.getElementById('messages').innerHTML += '<div class="message-mine"><p class="message-body">' + messages[i].message + '</p></div> <br><br><br>';
