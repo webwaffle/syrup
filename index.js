@@ -82,7 +82,7 @@ app.get('/chat', function (req, res) {
                 creator: c.creator,
                 chats: myChats
             };
-            console.log(args);
+            //console.log(args);
         }
     });
     res.render('home/chat', args);
