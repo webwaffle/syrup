@@ -21,4 +21,11 @@
 </div>
 <input type="text" id="message">
 <input type="submit" value="Send" id="message-send">
+{{#if admin}}
+   <h3>Ban A User</h3>
+    <form action="/ban-process?chatid={{id}}" method="POST">
+        <input type="text" name="user" placeholder="Username to ban">
+        <input type="submit" value="Ban">
+    </form>
+{{/if}}
 <script src="/client_js/message.js"></script>
