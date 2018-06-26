@@ -60,6 +60,14 @@ app.get('/home', function(req, res) {
 
 app.get('/chat', function (req, res) {
     var chatArray = fileToJson('data/chats.json');
+    var myChats = [];
+    for(var i = 0; i < chatArray.length; i++) {
+        chatArray[i].members.forEach(function(c) {
+            if(c.username == req.session.username && c.id == req.session.userid) {
+                myChats.push(chatArray[i]);
+            }
+        });
+    }
     chatArray.forEach(function(c) {
         if(req.query.id == c.id) {
             var chat = c;
@@ -68,7 +76,8 @@ app.get('/chat', function (req, res) {
                 name: c.name,
                 id: c.id,
                 username: req.session.username,
-                creator: c.creator
+                creator: c.creator,
+                chats: myChats
             };
         }
     });
