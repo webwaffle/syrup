@@ -67,6 +67,9 @@ app.get('/chat', function (req, res) {
                 myChats.push(chatArray[i]);
             }
         });
+        if(chatArray[i].creator == req.session.username) {
+            myChats.push(chatArray[i]);
+        }
     }
     chatArray.forEach(function(c) {
         if(req.query.id == c.id) {
@@ -79,6 +82,7 @@ app.get('/chat', function (req, res) {
                 creator: c.creator,
                 chats: myChats
             };
+            console.log(args);
         }
     });
     res.render('home/chat', args);

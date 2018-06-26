@@ -1,23 +1,23 @@
 <script>
     var chatid = {{id}};
     var username = "{{username}}"
-
+    document.title = "{{name}} - Syrup"
 </script>
 <p>Logged in as {{username}}</p>
 <h1>{{name}}</h1>
 <h5 id="creator">Created by {{creator}}</h5>
 <div class="row">
-    <div id="chats" class="col-sm-4">
+   <div id="messages" class="col-sm-4"></div>
+   <div class="col-sm-3"></div>
+    <div id="chats" class="col-sm-3">
         {{#each chats}}
-            <div class="chat">
-                <div class="joined-chat">
-                    <p class="chat-id">#{{id}}</p>
-                    <a href="/chat?id={{id}}"><h4 class="chat-name">{{name}}</h4></a>
-                </div>
+            <div class="joined-chat">
+                <p class="chat-id">#{{id}}</p>
+                <a href="/chat?id={{id}}"><h4 class="chat-name">{{name}}</h4></a>
             </div>
         {{/each}}
     </div>
-    <div id="messages" class="col-sm-4"></div>
+    
 </div>
 <input type="text" id="message">
 <input type="submit" value="Send" id="message-send">
