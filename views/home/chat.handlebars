@@ -1,31 +1,31 @@
+<script src="/moment.js"></script>
 <script>
     var chatid = {{id}};
     var username = "{{username}}"
     document.title = "{{name}} - Syrup"
 </script>
-<p>Logged in as {{username}}</p>
-<h1>{{name}}</h1>
-<h5 id="creator">Created by {{creator}}</h5>
-<div class="row">
-   <div id="messages" class="col-sm-4"></div>
-   <div class="col-sm-3"></div>
-    <div id="chats" class="col-sm-3">
+<div id="chat-sidebar">
+    <div class="topbar" style="border-color: white;">
+        <h1 class="centered-text header-font" w>Syrup</h1>
+    </div>
+    <h1 class="header-font" w>{{name}}</h1>
+    <h4 class="header-font" id="creator" w>Created by {{creator}}</h4>
+    <p w>#{{id}}</p>
+    <div id="sidebar-chats-wrapper">
+       <h2 w>My Chats</h2>
         {{#each chats}}
-            <div class="joined-chat">
+            <div class="sidebar-chat">
                 <p class="chat-id">#{{id}}</p>
                 <a href="/chat?id={{id}}"><h4 class="chat-name">{{name}}</h4></a>
             </div>
         {{/each}}
     </div>
-    
 </div>
-<input type="text" id="message">
-<input type="submit" value="Send" id="message-send">
-{{#if admin}}
-   <h3>Ban A User</h3>
-    <form action="/ban-process?chatid={{id}}" method="POST">
-        <input type="text" name="user" placeholder="Username to ban">
-        <input type="submit" value="Ban">
-    </form>
-{{/if}}
+
+
+<div id="message-send-menu">
+    <input type="text" id="message">
+    <button id="message-send">Send</button>
+</div>
 <script src="/client_js/message.js"></script>
+<div id="messages"></div>

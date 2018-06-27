@@ -34,21 +34,12 @@ function getMessages() {
             var messages = JSON.parse(this.responseText);
             document.getElementById('messages').innerHTML = "";
             for (var i = 0; i < messages.length; i++) {
-                if (messages[i].from.username) {
-                    userfrom = messages[i].from.username;
-                } else {
-                    userfrom = document.getElementById('creator').innerHTML.slice(11);
-                }
-                if (messages[i].mine) {
-                    document.getElementById('messages').innerHTML += '<div class="message-mine"><p class="message-body">' + messages[i].message + '</p></div> <br><br><br>';
-                } else {
-                    document.getElementById('messages').innerHTML += '<div class="message-notmine"><p class="message-body">' + messages[i].message + '</p></div><br><p class="message-sender">from ' + userfrom  + '</p> <br><br><br>';
-                }
+                document.getElementById('messages').innerHTML += '<div class="message"><p class="message-from">' + messages[i].from.username + '</p><p class="message-body">' + messages[i].message + '</p><p class="message-time">' + moment(messages[i].sent, "MM-DD-YYYY h:mm:ss a").fromNow() + '</p></div>';
             }
             //console.log(this.responseText);
         }
     }
-    req.open('GET', '/message-api?id=' + chatid + '&username=' + username + 'nocache=' + Date().toLocaleString(), true);
+    req.open('GET', '/message-api?id=' + chatid + '&username=' + username + 'reqtime=' + Date().toLocaleString(), true);
     req.send();
 }
 getMessages();

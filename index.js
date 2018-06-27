@@ -252,6 +252,11 @@ app.post('/ban-process', function (req, res) {
     fs.writeFileSync('data/bans.json', JSON.stringify(banArray, undefined, 2));
     res.redirect(303, '/chat?id=' + req.query.chatid);
 });
+app.get('/moment.js', function(req, res) {
+    res.type('application/javascript');
+    res.send(fs.readFileSync('node_modules/moment/moment.js'));
+});
+
 
 app.use(function (req, res, next) {
     res.type('text/plain');

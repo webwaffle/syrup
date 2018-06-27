@@ -1,3 +1,6 @@
+<div class="topbar">
+            <h1 class="centered-text header-font">Syrup</h1>
+        </div>
 <h1>Welcome {{username}}</h1>
 <a href="/logout">Logout</a>
 <form action="/create-chat-process" method="POST">
@@ -10,7 +13,6 @@
     <input type="text" name="join_id" placeholder="Chat ID">
     <input type="submit" value="Join">
 </form>
-<div id="chats" style="display: table;">
 {{#each ownedChats}}
     <div class="owned-chat">
         <p class="chat-id">#{{id}}</p>
@@ -23,4 +25,3 @@
         <a href="/chat?id={{id}}"><h4 class="chat-name">{{name}}</h4></a>
     </div>
 {{/each}}
-</div>
