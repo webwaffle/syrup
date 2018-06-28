@@ -1,7 +1,7 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto+Slab|Tajawal';
 
 body {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 * {
     font-family: 'Tajawal', sans-serif;
@@ -82,7 +82,10 @@ h1 {
     width: 100%;
     height: 100%;
     margin-left: 325px;
-    margin-bottom: 60px;
+    padding-bottom: 62px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 2;
     .message {
         width: 100%;
         min-height: 100px;
